@@ -21,7 +21,7 @@ do
   if [[ $(($i % $perBatch)) == 1 ]]; then
     numbering="00$i"
     echo "$numbering"
-    cat /scratch/pXXXX/scripts/job_templates/job_template_1 | sed 's/JOBNAME/aFold/g' | sed 's/FASTANAME/$file/g' > batch_script_$numbering
+    cat /scratch/pXXXX/scripts/job_templates/job_template_2 | sed 's/JOBNAME/aFold/g' | sed 's/FASTANAME/$file/g' > batch_script_$numbering
     echo "sbatch  batch_script_$numbering" >> todolist
   fi
   
