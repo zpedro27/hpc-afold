@@ -21,12 +21,12 @@ do
   if [[ $(($i % $perBatch)) == 1 ]]; then
     numbering="00$i"
     echo "$numbering"
-    cat /scratch/pXXXX/scripts/job_templates/job_template_2 | sed 's/JOBNAME/aFold/g' | sed 's/FASTANAME/$file/g' > batch_script_$numbering
+    cat /scratch/pXXXX/scripts/job_templates/job_template_2 | sed 's/JOBNAME/aFold/g' | sed 's/FASTANAME/$file/g' | sed "s/HOURS/$HOURS/g" | sed "s/MEMORY/$MEMORY/g" > batch_script_$numbering
     echo "sbatch  batch_script_$numbering" >> todolist
   fi
   
   # Append to existing batch script
-  echo "alphafold --fasta_paths=$file --model_preset=multimer --max_template_date=2021-12-31 --output_dir=output" >> batch_script_$numbering
+  echo "alphafold --fasta_paths=$file --model_preset=multimer --max_template_date=2021-12-31 --output_dir=output --num_multimer_predictions_per_model=2" >> batch_script_$numbering
   echo "python /scratch/pXXXX/scripts/helper/deleteExtraFiles.py $file" >> batch_script_$numbering
   echo "bash /scratch/pXXXX/scripts/helper/updateListSimulations.sh $file" >> batch_script_$numbering
   
