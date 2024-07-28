@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH --job-name=JOBNAME
+#SBATCH --time=12:00:00
+#SBATCH --partition=gpu
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=12
+#SBATCH --mem=80GB
+#SBATCH --gpus-per-node=a100:1
+
+
+module purge
+module load AlphaFold/2.3.1-foss-2022a-CUDA-11.7.0
+
+# Create a mountpoint for the AlphaFold database in squashfs format
+mkdir -p $TMPDIR/alphafold_data
+ 
+# Copy the squashfs image with the AlphaFold database to fast local storage
+cp /scratch/public/AlphaFold/2.3.1.zstd.sqsh $TMPDIR
+
+# Mount the AlphaFold database squashfs image
+squashfuse $TMPDIR/2.3.1.zstd.sqsh $TMPDIR/alphafold_data
+
+# Set the path to the AlphaFold database
+export ALPHAFOLD_DATA_DIR=$TMPDIR/alphafold_data
+ 
+# Run AlphaFold
