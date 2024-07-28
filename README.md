@@ -1,8 +1,8 @@
 # Scripts for running AlphaFold on the HPC cluster
 
-Bash scripts and macros to help setting up *AlphaFold Multimer* predictions on the HPC cluster of the University of Groningen (Peregrine, until mid-2023; Habrók thereafter).
+Scripts for setting up *AlphaFold Multimer* predictions on the HPC cluster of the University of Groningen ([Habrók](https://wiki.hpc.rug.nl/habrok/start)) and handling the resulting files.
 
-AlphaFold version updated in the new HPC cluster (Peregrine: 2.1.1; Habrók: 2.3.1).
+AlphaFold version on Habrók: 2.3.1.
 
 
 ## Instructions
@@ -15,7 +15,7 @@ AlphaFold version updated in the new HPC cluster (Peregrine: 2.1.1; Habrók: 2.3
 	- `cd /scratch/your_p_number`
 	- `mkdir scripts` -> place the files that are in this repository
 
-2. Prepare folder with simulations to be run
+2. Prepare folder with simulations to be run:
 	- `cd /scratch/your_p_number`
 	- `mkdir name_of_folder_with_simulations` -> place all `.fasta` files in this folder
 
@@ -51,6 +51,4 @@ AlphaFold version updated in the new HPC cluster (Peregrine: 2.1.1; Habrók: 2.3
 
 
 ## References
-- Habrók Wiki: https://wiki.hpc.rug.nl/habrok/start
-
 - Using AlphaFold on Habrók: https://wiki.hpc.rug.nl/habrok/examples/alphafold
